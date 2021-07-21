@@ -17,7 +17,7 @@ const contactMail = nodemailer.createTransport({
 router.post('/', (req, res) => {
   const { firstName, lastName, email, message, phoneNumber } = req.body;
   const mail = {
-    from: 'FarmConnect',
+    from: 'Compass Language School',
     to: process.env.CONTACT_EMAIL,
     subject: 'Contact Form Submission',
     html: `<p>Nom : ${lastName}</p>

@@ -9,7 +9,7 @@ const contactRoutes = require('./routes/contactform');
 
 app.use(express.json());
 app.use(passport.initialize());
-app.use(cors({ credentials: true, origin: frontendUrl }));
+app.use(cors());
 app.use('/users', usersRoutes);
 app.use('/contact', contactRoutes);
 
