@@ -7,13 +7,15 @@ const app = express();
 const usersRoutes = require('./routes/users');
 const contactRoutes = require('./routes/contactform');
 const cursusRoutes = require('./routes/cursus')
+const blogRoutes = require ('./routes/blog')
 
 app.use(express.json());
 app.use(passport.initialize());
 app.use(cors());
 app.use('/users', usersRoutes);
+app.use('/blog', blogRoutes);
 app.use('/contact', contactRoutes);
-app.use('/cours&formules', cursusRoutes)
+app.use('/coursformules', cursusRoutes)
 
 app.use('/auth', require('./routes/auth'));
 

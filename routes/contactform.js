@@ -15,13 +15,14 @@ const contactMail = nodemailer.createTransport({
 });
 
 router.post('/', (req, res) => {
-  const { firstName, lastName, email, message, phoneNumber } = req.body;
+  const { firstName, lastName, request, email, message, phoneNumber } = req.body;
   const mail = {
     from: 'Compass Language School',
     to: process.env.CONTACT_EMAIL,
     subject: 'Contact Form Submission',
     html: `<p>Nom : ${lastName}</p>
     <p>Prénom : ${firstName}</p>
+    <p>Demande : ${request}</p>
     <p>Téléphone : ${phoneNumber}</p>
     <p>Email : ${email}</p>
     <p>Message : ${message}</p>
