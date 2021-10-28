@@ -6,9 +6,9 @@ const { db } = require('../conf');
 router.get('/', async (req, res) => {
   const sql = `
     SELECT 
-      id, sex, firstname, lastname, zipcode, city, country, email, mobile, isStaff 
+      id, firstname, lastname, email, mobile, admin
     FROM 
-      users`;
+      teachers`;
   const [results] = await db.query(sql);
   res.json(results);
 });
@@ -17,9 +17,9 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const sql = `
   SELECT 
-    sex, firstname, lastname, zipcode, city, country, email, mobile, isStaff 
+    firstname, lastname, email, mobile, admin 
   FROM 
-    users 
+    teachers 
   WHERE 
     id=?`;
   const sqlValues = [id];
@@ -30,33 +30,25 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
-    sex,
     firstname,
     lastname,
-    zipcode,
-    city,
-    country,
     email,
     mobile,
-    isStaff,
+    admin,
   } = req.body;
   const sql = `
   UPDATE 
-    users 
+    teachers 
   SET 
-   sex=?, firstname=?, lastname=?, zipcode=?, city=?, country=?, email=?, mobile=?, isStaff=? 
+   firstname=?, lastname=?, email=?, mobile=?, admin=? 
   WHERE 
     id=?`;
   const sqlValues = [
-    sex,
     firstname,
     lastname,
-    zipcode,
-    city,
-    country,
     email,
     mobile,
-    isStaff,
+    admin,
     id,
   ];
   try {
@@ -71,7 +63,7 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const sql = `
   DELETE FROM 
-    users 
+    teachers 
   WHERE 
     id=?`;
   const sqlValues = [id];
